@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.isk_subnetcalculator.FXMLController">
     <children>
-        <Button fx:id="calculateButton" layoutX="98.0" layoutY="66.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="141.0" text="Calculate" />
+        <Button fx:id="calculateButton" layoutX="52.0" layoutY="91.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="141.0" text="Calculate" />
       <TableView fx:id="tableView" layoutX="52.0" layoutY="155.0" prefHeight="276.0" prefWidth="695.0" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="155.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
@@ -22,12 +22,12 @@
             <TableColumn fx:id="broadcastColumn" prefWidth="118.0" text="Broadcast" />
         </columns>
       </TableView>
-      <TextField fx:id="nameText" layoutX="676.0" layoutY="41.0" prefHeight="25.0" prefWidth="84.0" />
-      <TextField fx:id="sizeText" layoutX="676.0" layoutY="78.0" prefHeight="25.0" prefWidth="84.0" />
-      <Button fx:id="addSubnetButton" layoutX="510.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleAddSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Add Subnet" />
-      <Button fx:id="clearSubnetsButton" layoutX="523.0" layoutY="91.0" mnemonicParsing="false" onAction="#clearSubnetsButtonClick" prefHeight="25.0" prefWidth="122.0" text="Clear Subnets" />
-      <Label layoutX="272.0" layoutY="59.0" prefHeight="25.0" prefWidth="93.0" text="major ip" />
-      <TextField fx:id="majorIpText" layoutX="259.0" layoutY="91.0" text="196.168.1.0/24" />
-      <Button fx:id="buttonGenerator" layoutX="345.0" layoutY="29.0" mnemonicParsing="false" onAction="#buttonGeneratorClick" prefHeight="25.0" prefWidth="147.0" text="Generate Subnets" />
+      <TextField fx:id="nameText" layoutX="663.0" layoutY="47.0" prefHeight="25.0" prefWidth="84.0" text="name" />
+      <TextField fx:id="sizeText" layoutX="663.0" layoutY="91.0" prefHeight="25.0" prefWidth="84.0" text="size" />
+      <Button fx:id="addSubnetButton" layoutX="475.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleAddSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Add Subnet" />
+      <Button fx:id="clearSubnetsButton" layoutX="488.0" layoutY="91.0" mnemonicParsing="false" onAction="#clearSubnetsButtonClick" prefHeight="25.0" prefWidth="122.0" text="Clear Subnets" />
+      <Label layoutX="252.0" layoutY="47.0" prefHeight="25.0" prefWidth="93.0" text="major ip" />
+      <TextField fx:id="majorIpText" layoutX="252.0" layoutY="91.0" text="196.168.1.0/24" />
+      <Button fx:id="buttonGenerator" layoutX="49.0" layoutY="47.0" mnemonicParsing="false" onAction="#buttonGeneratorClick" prefHeight="25.0" prefWidth="147.0" text="Generate Subnets" />
     </children>
 </AnchorPane>
