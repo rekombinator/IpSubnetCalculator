@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Calculator {
     
-    private Map<String, Integer> subnets = new HashMap<>();
+    private final Map<String, Integer> subnets = new HashMap<>();
     
     public void clearSubnets(){
         subnets.clear();
@@ -45,7 +45,7 @@ public class Calculator {
             subnet.setAllocatedSize(allocatedSize);
             subnet.setBroadcast(convertIpToQuartet(currentIp + allocatedSize + 1));
             
-            subnet.setCapacity(Integer.valueOf((neededSize * 100) / allocatedSize) + " %");
+            subnet.setCapacity((neededSize * 100) / allocatedSize + " %");
 
             String firstUsableHost = convertIpToQuartet(currentIp + 1);
             String lastUsableHost = convertIpToQuartet(currentIp + allocatedSize);

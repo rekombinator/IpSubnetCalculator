@@ -1,8 +1,6 @@
 package com.isk_subnetcalculator;
 
 import java.net.URL;
-import java.util.Random;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,7 +44,7 @@ public class FXMLController implements Initializable {
     @FXML
     private TextField majorIpText;
          
-    private Calculator calculator = new Calculator();
+    private final Calculator calculator = new Calculator();
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -102,23 +100,22 @@ public class FXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         tableView.setEditable(true);
         nameColumn.setCellValueFactory(
-                new PropertyValueFactory<Subnet,String>("name"));
+                new PropertyValueFactory<>("name"));
         neededSizeColumn.setCellValueFactory(
-                new PropertyValueFactory<Subnet,String>("neededSize"));
+                new PropertyValueFactory<>("neededSize"));
         allocatedSizeColumn.setCellValueFactory(
-                new PropertyValueFactory<Subnet,String>("allocatedSize"));
+                new PropertyValueFactory<>("allocatedSize"));
         addressColumn.setCellValueFactory(
-                new PropertyValueFactory<Subnet,String>("address"));
+                new PropertyValueFactory<>("address"));
         maskColumn.setCellValueFactory(
-                new PropertyValueFactory<Subnet,String>("mask"));
+                new PropertyValueFactory<>("mask"));
         decMaskColumn.setCellValueFactory(
-                new PropertyValueFactory<Subnet,String>("decMask"));
+                new PropertyValueFactory<>("decMask"));
         rangeColumn.setCellValueFactory(
-                new PropertyValueFactory<Subnet,String>("range"));
+                new PropertyValueFactory<>("range"));
         broadcastColumn.setCellValueFactory(
-                new PropertyValueFactory<Subnet,String>("broadcast"));
-        
+                new PropertyValueFactory<>("broadcast")); 
         capacityColumn.setCellValueFactory(
-                new PropertyValueFactory<Subnet,String>("capacity"));
+                new PropertyValueFactory<>("capacity"));
     }    
 }
