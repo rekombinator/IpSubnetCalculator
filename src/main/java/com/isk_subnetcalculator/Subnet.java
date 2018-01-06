@@ -22,7 +22,8 @@ public class Subnet {
     private SimpleStringProperty decMask = new SimpleStringProperty();
     private SimpleStringProperty range = new SimpleStringProperty();
     private SimpleStringProperty broadcast = new SimpleStringProperty();
-
+    private SimpleStringProperty capacity = new SimpleStringProperty();
+    
     public Subnet(){
         
     }
@@ -115,6 +116,14 @@ public class Subnet {
 
     public void setBroadcast(String broadcast) {
         this.broadcast.setValue(broadcast);
+    }
+    
+    public void setCapacity(String capacity) {
+        this.capacity.setValue(capacity);
+    }
+
+    public String getCapacity() {
+        return capacity.getValue();
     }
 
     @Override

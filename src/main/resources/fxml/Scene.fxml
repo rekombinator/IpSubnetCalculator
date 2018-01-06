@@ -7,19 +7,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.isk_subnetcalculator.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="787.0" prefWidth="1214.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.isk_subnetcalculator.FXMLController">
     <children>
         <Button fx:id="calculateButton" layoutX="52.0" layoutY="91.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="141.0" text="Calculate" />
       <TableView fx:id="tableView" layoutX="52.0" layoutY="155.0" prefHeight="276.0" prefWidth="695.0" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="155.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="neededSizeColumn" prefWidth="75.0" text="Size" />
-            <TableColumn fx:id="allocatedSizeColumn" prefWidth="110.0" text="AllocatedSize" />
-            <TableColumn fx:id="addressColumn" minWidth="8.0" prefWidth="69.0" text="Address" />
-            <TableColumn fx:id="maskColumn" minWidth="0.0" prefWidth="68.0" text="Mask" />
-            <TableColumn fx:id="decMaskColumn" minWidth="0.0" prefWidth="97.0" text="DecMask" />
-            <TableColumn fx:id="rangeColumn" prefWidth="82.0" text="Range" />
-            <TableColumn fx:id="broadcastColumn" prefWidth="118.0" text="Broadcast" />
+          <TableColumn fx:id="nameColumn" prefWidth="65.0" text="Name" />
+          <TableColumn fx:id="neededSizeColumn" prefWidth="53.0" text="Size" />
+            <TableColumn fx:id="allocatedSizeColumn" prefWidth="108.0" text="AllocatedSize" />
+            <TableColumn fx:id="addressColumn" minWidth="8.0" prefWidth="143.0" text="Address" />
+            <TableColumn fx:id="maskColumn" minWidth="0.0" prefWidth="56.0" text="Mask" />
+            <TableColumn fx:id="decMaskColumn" minWidth="0.0" prefWidth="163.0" text="DecMask" />
+            <TableColumn fx:id="rangeColumn" prefWidth="276.0" text="Range" />
+            <TableColumn fx:id="broadcastColumn" prefWidth="157.0" text="Broadcast" />
+            <TableColumn fx:id="capacityColumn" prefWidth="87.0" text="Capacity" />
         </columns>
       </TableView>
       <TextField fx:id="nameText" layoutX="663.0" layoutY="47.0" prefHeight="25.0" prefWidth="84.0" text="name" />

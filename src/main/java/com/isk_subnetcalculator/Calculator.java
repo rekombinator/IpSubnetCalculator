@@ -44,6 +44,8 @@ public class Calculator {
             int allocatedSize = findUsableHosts(mask);
             subnet.setAllocatedSize(allocatedSize);
             subnet.setBroadcast(convertIpToQuartet(currentIp + allocatedSize + 1));
+            
+            subnet.setCapacity(Integer.valueOf((neededSize * 100) / allocatedSize) + " %");
 
             String firstUsableHost = convertIpToQuartet(currentIp + 1);
             String lastUsableHost = convertIpToQuartet(currentIp + allocatedSize);
@@ -111,7 +113,8 @@ public class Calculator {
     }
 
     private int calcMask(int neededSize) {
-        int highestBit = Integer.highestOneBit(neededSize);
+//        int highestBit = Integer.highestOneBit(neededSize);  stara wersja przy neededSize 7 dawała 6 jako allocatedSize, dodałem jeden i trzeba sprawdzić czy OK
+        int highestBit = Integer.highestOneBit(neededSize + 1 );
         int position = (int) (Math.log(highestBit) / Math.log(2));
         return Integer.SIZE - (position + 1);   // +1 because position starts with 0
     }
