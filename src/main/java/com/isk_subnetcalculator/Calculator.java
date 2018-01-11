@@ -54,10 +54,7 @@ public class Calculator {
             int allocatedSize = findUsableHosts(mask);
             subnet.setAllocatedSize(allocatedSize);
             subnet.setBroadcast(convertIpToQuartet(currentIp + allocatedSize + 1));
-            
-            System.out.println("neededSize" + neededSize);
-            System.out.println("alocatedSize" + allocatedSize);
-            
+
             subnet.setCapacity((neededSize * 100) / allocatedSize + " %");
 
             String firstUsableHost = convertIpToQuartet(currentIp + 1);
@@ -152,6 +149,5 @@ public class Calculator {
     public void setCapacityMultiplier(int capacityMultiplier) {
         this.capacityMultiplier = capacityMultiplier;
     }
-  
 
 }
