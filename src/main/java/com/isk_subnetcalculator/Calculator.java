@@ -15,12 +15,15 @@ public class Calculator {
     public void clearSubnets(){
         subnets.clear();
     }
+    public void removeSubnet(String name){
+        subnets.remove(name);
+    }
     
     public void addSubnet(String name, Integer size){
         subnets.put(name, size);
     }
     
-    public List<Subnet> calculate(String majorNetwork) {
+        public List<Subnet> calculate(String majorNetwork) {
         
         Map<String, Integer> sortedSubnets = sortMap(subnets);
         
@@ -59,7 +62,7 @@ public class Calculator {
 
         return output;
     }
-
+    
     private Map<String, Integer> sortMap(Map<String, Integer> map) {
         
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(map.entrySet());

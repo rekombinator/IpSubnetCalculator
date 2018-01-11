@@ -39,6 +39,9 @@ public class FXMLController implements Initializable {
     private TextField nameText;
     
     @FXML
+    private TextField removeSubnetText;
+    
+    @FXML
     private TextField sizeText;
     
     @FXML
@@ -95,7 +98,21 @@ public class FXMLController implements Initializable {
             }          
         }
     }
-    
+          
+    @FXML
+    private void handleRemoveSubnetButtonClick(ActionEvent event) {
+        
+        String name = removeSubnetText.getText();
+        
+        if(!name.equals("")){          
+            calculator.removeSubnet(name);
+            tableView.getItems().remove(name);          
+            tableView.setItems(FXCollections.observableArrayList(
+            calculator.calculate(majorIpText.getText())));
+            tableView.refresh();
+        }
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tableView.setEditable(true);

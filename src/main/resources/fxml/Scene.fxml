@@ -7,9 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="787.0" prefWidth="1214.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.isk_subnetcalculator.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="787.0" prefWidth="1214.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.isk_subnetcalculator.FXMLController">
     <children>
-        <Button fx:id="calculateButton" layoutX="52.0" layoutY="91.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="141.0" text="Calculate" />
+        <Button fx:id="calculateButton" layoutX="49.0" layoutY="104.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="147.0" text="Calculate" />
       <TableView fx:id="tableView" layoutX="52.0" layoutY="155.0" prefHeight="276.0" prefWidth="695.0" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="155.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="65.0" text="Name" />
@@ -23,12 +23,13 @@
             <TableColumn fx:id="capacityColumn" prefWidth="87.0" text="Capacity" />
         </columns>
       </TableView>
-      <TextField fx:id="nameText" layoutX="663.0" layoutY="47.0" prefHeight="25.0" prefWidth="84.0" text="name" />
-      <TextField fx:id="sizeText" layoutX="663.0" layoutY="91.0" prefHeight="25.0" prefWidth="84.0" text="size" />
-      <Button fx:id="addSubnetButton" layoutX="475.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleAddSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Add Subnet" />
-      <Button fx:id="clearSubnetsButton" layoutX="488.0" layoutY="91.0" mnemonicParsing="false" onAction="#clearSubnetsButtonClick" prefHeight="25.0" prefWidth="122.0" text="Clear Subnets" />
-      <Label layoutX="252.0" layoutY="47.0" prefHeight="25.0" prefWidth="93.0" text="major ip" />
-      <TextField fx:id="majorIpText" layoutX="252.0" layoutY="91.0" text="196.168.1.0/24" />
-      <Button fx:id="buttonGenerator" layoutX="49.0" layoutY="47.0" mnemonicParsing="false" onAction="#buttonGeneratorClick" prefHeight="25.0" prefWidth="147.0" text="Generate Subnets" />
+      <TextField fx:id="nameText" layoutX="238.0" layoutY="72.0" prefHeight="25.0" prefWidth="147.0" />
+      <TextField fx:id="sizeText" layoutX="238.0" layoutY="104.0" prefHeight="25.0" prefWidth="147.0" />
+      <Button fx:id="addSubnetButton" layoutX="238.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAddSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Add Subnet" />
+      <Button fx:id="clearSubnetsButton" layoutX="49.0" layoutY="72.0" mnemonicParsing="false" onAction="#clearSubnetsButtonClick" prefHeight="25.0" prefWidth="147.0" text="Clear Subnets" />
+      <TextField fx:id="majorIpText" layoutX="969.0" layoutY="35.0" prefHeight="25.0" prefWidth="147.0" text="196.168.1.0/24" />
+      <Button fx:id="buttonGenerator" layoutX="49.0" layoutY="35.0" mnemonicParsing="false" onAction="#buttonGeneratorClick" prefHeight="25.0" prefWidth="147.0" text="Generate Subnets" />
+      <Button layoutX="403.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleRemoveSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Remove Subnet" />
+      <TextField fx:id="removeSubnetText" layoutX="403.0" layoutY="72.0" prefHeight="25.0" prefWidth="147.0" />
     </children>
 </AnchorPane>
