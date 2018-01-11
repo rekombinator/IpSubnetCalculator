@@ -10,6 +10,8 @@ import java.util.Map;
 
 public class Calculator {
     
+    private Integer capacityMultiplier = null;
+
     private final Map<String, Integer> subnets = new HashMap<>();
     
     public void clearSubnets(){
@@ -18,17 +20,17 @@ public class Calculator {
     public void removeSubnet(String name){
         subnets.remove(name);
     }
-    
+
     public void addSubnet(String name, Integer size){
         subnets.put(name, size);
     }
     
-        public List<Subnet> calculate(String majorNetwork) {
-        
+    public List<Subnet> calculate(String majorNetwork) {
+
         Map<String, Integer> sortedSubnets = sortMap(subnets);
-        
+
         List<Subnet> output = new ArrayList<>();
-        
+
         int currentIp = findFirstIp(majorNetwork);
 
         for (String key : sortedSubnets.keySet()) { 
@@ -39,8 +41,13 @@ public class Calculator {
 
             int neededSize = sortedSubnets.get(key);
             subnet.setNeededSize(neededSize);
+            
+            int neededSizeWithCapacity = neededSize;
+            if(capacityMultiplier != null){
+                neededSizeWithCapacity = (neededSize * 100)/ capacityMultiplier;
+            }
 
-            int mask = calcMask(neededSize);
+            int mask = calcMask(neededSizeWithCapacity);
             subnet.setMask("/" + mask);
             subnet.setDecMask(toDecMask(mask));
 
@@ -48,11 +55,14 @@ public class Calculator {
             subnet.setAllocatedSize(allocatedSize);
             subnet.setBroadcast(convertIpToQuartet(currentIp + allocatedSize + 1));
             
+            System.out.println("neededSize" + neededSize);
+            System.out.println("alocatedSize" + allocatedSize);
+            
             subnet.setCapacity((neededSize * 100) / allocatedSize + " %");
 
             String firstUsableHost = convertIpToQuartet(currentIp + 1);
             String lastUsableHost = convertIpToQuartet(currentIp + allocatedSize);
-            
+
             subnet.setRange(firstUsableHost + " - " + lastUsableHost);
 
             output.add(subnet);
@@ -134,6 +144,13 @@ public class Calculator {
         int shifted = allOne << (Integer.SIZE - mask);
 
         return convertIpToQuartet(shifted);
+    }
+    
+    public int getCapacityMultiplier() {
+        return capacityMultiplier;
+    }
+    public void setCapacityMultiplier(int capacityMultiplier) {
+        this.capacityMultiplier = capacityMultiplier;
     }
   
 

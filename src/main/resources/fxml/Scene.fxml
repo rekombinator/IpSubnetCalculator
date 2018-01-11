@@ -23,13 +23,14 @@
             <TableColumn fx:id="capacityColumn" prefWidth="87.0" text="Capacity" />
         </columns>
       </TableView>
-      <TextField fx:id="nameText" layoutX="238.0" layoutY="72.0" prefHeight="25.0" prefWidth="147.0" />
-      <TextField fx:id="sizeText" layoutX="238.0" layoutY="104.0" prefHeight="25.0" prefWidth="147.0" />
+      <TextField fx:id="nameText" layoutX="413.0" layoutY="35.0" prefHeight="25.0" prefWidth="147.0" text="name" />
+      <TextField fx:id="sizeText" layoutX="413.0" layoutY="72.0" prefHeight="25.0" prefWidth="147.0" text="size" />
       <Button fx:id="addSubnetButton" layoutX="238.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAddSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Add Subnet" />
       <Button fx:id="clearSubnetsButton" layoutX="49.0" layoutY="72.0" mnemonicParsing="false" onAction="#clearSubnetsButtonClick" prefHeight="25.0" prefWidth="147.0" text="Clear Subnets" />
       <TextField fx:id="majorIpText" layoutX="969.0" layoutY="35.0" prefHeight="25.0" prefWidth="147.0" text="196.168.1.0/24" />
       <Button fx:id="buttonGenerator" layoutX="49.0" layoutY="35.0" mnemonicParsing="false" onAction="#buttonGeneratorClick" prefHeight="25.0" prefWidth="147.0" text="Generate Subnets" />
-      <Button layoutX="403.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleRemoveSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Remove Subnet" />
-      <TextField fx:id="removeSubnetText" layoutX="403.0" layoutY="72.0" prefHeight="25.0" prefWidth="147.0" />
+      <Button layoutX="238.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleRemoveSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Remove Subnet" />
+      <Button layoutX="238.0" layoutY="72.0" mnemonicParsing="false" onAction="#handleChangeSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Change Subnet" />
+      <TextField fx:id="capcityText" layoutX="607.0" layoutY="35.0" onAction="#changeCapacity" prefHeight="25.0" prefWidth="147.0" text="MAX CAPACITY" />
     </children>
 </AnchorPane>

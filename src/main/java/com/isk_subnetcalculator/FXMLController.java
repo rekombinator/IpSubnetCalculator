@@ -37,22 +37,29 @@ public class FXMLController implements Initializable {
     
     @FXML
     private TextField nameText;
-    
-    @FXML
-    private TextField removeSubnetText;
-    
+       
     @FXML
     private TextField sizeText;
     
     @FXML
+    private TextField capcityText;
+    
+    @FXML
     private TextField majorIpText;
+    
          
-    private final Calculator calculator = new Calculator();
+    private final Calculator calculator = new Calculator();          
+            
+    @FXML
+    private void changeCapacity(ActionEvent event) {
+           System.out.println(capcityText.getText());
+        calculator.setCapacityMultiplier(Integer.parseInt(capcityText.getText()));
+        
+    }
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        
-         
+           
         tableView.setItems(FXCollections.observableArrayList(
                 calculator.calculate(majorIpText.getText())));
         tableView.refresh();
@@ -102,7 +109,7 @@ public class FXMLController implements Initializable {
     @FXML
     private void handleRemoveSubnetButtonClick(ActionEvent event) {
         
-        String name = removeSubnetText.getText();
+        String name = nameText.getText();
         
         if(!name.equals("")){          
             calculator.removeSubnet(name);
@@ -111,8 +118,30 @@ public class FXMLController implements Initializable {
             calculator.calculate(majorIpText.getText())));
             tableView.refresh();
         }
-
     }
+    
+        @FXML
+    private void handleChangeSubnetButtonClick(ActionEvent event) {
+        
+        String name = nameText.getText();
+        String size = sizeText.getText();
+        
+        if(!name.equals("") && !size.equals("") ){ 
+            
+            calculator.removeSubnet(name);
+            calculator.addSubnet(name, Integer.parseInt(size));
+            
+            ObservableList<Subnet> viewlist = tableView.getItems();
+            
+            viewlist.remove(name); 
+            viewlist.add(new Subnet(name, Integer.parseInt(size)));  
+            
+            tableView.setItems(FXCollections.observableArrayList(
+            calculator.calculate(majorIpText.getText())));
+            tableView.refresh();
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tableView.setEditable(true);
