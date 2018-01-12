@@ -42,27 +42,31 @@ public class FXMLController implements Initializable {
     private TextField sizeText;
     
     @FXML
-    private TextField capcityText;
+    private TextField capacityGlobalText;
+    
+    @FXML
+    private TextField capacityLocalText;
     
     @FXML
     private TextField majorIpText;
+             
+    private final Calculator calculator = new Calculator();    
     
-         
-    private final Calculator calculator = new Calculator();          
+    private void calculate(){
+        tableView.setItems(FXCollections.observableArrayList(
+                calculator.calculate(majorIpText.getText())));
+        tableView.refresh();
+    }
             
     @FXML
     private void changeCapacity(ActionEvent event) {
-           System.out.println(capcityText.getText());
-        calculator.setCapacityMultiplier(Integer.parseInt(capcityText.getText()));
-        
+        calculator.setGlobalCapacity(Integer.parseInt(
+                                                capacityGlobalText.getText()));
     }
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-           
-        tableView.setItems(FXCollections.observableArrayList(
-                calculator.calculate(majorIpText.getText())));
-        tableView.refresh();
+            calculate();
     }
     @FXML
     private void buttonGeneratorClick(ActionEvent event) {
@@ -75,8 +79,10 @@ public class FXMLController implements Initializable {
         
         for(int i = 0; i < randomNum; i++){
             int randomSubnetSize = 3 + (int)(Math.random() * 10);
-            calculator.addSubnet(name[i], randomSubnetSize);
-            tableView.getItems().add(new Subnet(name[i], randomSubnetSize));
+            Subnet subnet = new Subnet(name[i], randomSubnetSize);
+            subnet.setCapacity(capacityLocalText.getText());
+            calculator.addSubnet(subnet);
+            tableView.getItems().add(subnet);
         }        
         tableView.refresh();
     }
@@ -96,12 +102,12 @@ public class FXMLController implements Initializable {
         if(!name.equals("") && !size.equals("") ){
             
             Subnet subnet = new Subnet(name, Integer.parseInt(size));
+            subnet.setCapacity(capacityLocalText.getText());
             ObservableList<Subnet> viewlist = tableView.getItems();
 
             if(!viewlist.contains(subnet)){
                viewlist.add(subnet);           
-              calculator.addSubnet(nameText.getText(), 
-                      Integer.parseInt(sizeText.getText()));  
+              calculator.addSubnet(subnet);  
             }          
         }
     }
@@ -112,15 +118,15 @@ public class FXMLController implements Initializable {
         String name = nameText.getText();
         
         if(!name.equals("")){          
-            calculator.removeSubnet(name);
-            tableView.getItems().remove(name);          
-            tableView.setItems(FXCollections.observableArrayList(
-            calculator.calculate(majorIpText.getText())));
-            tableView.refresh();
+            calculator.removeSubnet(new Subnet(name, Integer.SIZE));
+            
+            tableView.getItems().remove(name);
+            
+                calculate();
         }
     }
     
-        @FXML
+    @FXML
     private void handleChangeSubnetButtonClick(ActionEvent event) {
         
         String name = nameText.getText();
@@ -128,17 +134,18 @@ public class FXMLController implements Initializable {
         
         if(!name.equals("") && !size.equals("") ){ 
             
-            calculator.removeSubnet(name);
-            calculator.addSubnet(name, Integer.parseInt(size));
+            Subnet subnet = new Subnet(name, Integer.parseInt(size));
+            subnet.setCapacity(capacityLocalText.getText());
+            
+            calculator.removeSubnet(subnet);
+            calculator.addSubnet(subnet);
             
             ObservableList<Subnet> viewlist = tableView.getItems();
             
-            viewlist.remove(name); 
-            viewlist.add(new Subnet(name, Integer.parseInt(size)));  
+            viewlist.remove(subnet); 
+            viewlist.add(subnet);  
             
-            tableView.setItems(FXCollections.observableArrayList(
-            calculator.calculate(majorIpText.getText())));
-            tableView.refresh();
+            calculate();
         }
     }
     

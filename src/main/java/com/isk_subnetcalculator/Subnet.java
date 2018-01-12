@@ -12,7 +12,7 @@ import javafx.beans.property.*;
  *
  * @author rekombinator
  */
-public class Subnet {
+public class Subnet implements Comparable<Subnet>{
     
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleIntegerProperty neededSize = new SimpleIntegerProperty();
@@ -149,6 +149,11 @@ public class Subnet {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int compareTo(Subnet t) {
+        return this.neededSize.getValue().compareTo(t.neededSize.getValue());
     }
     
         

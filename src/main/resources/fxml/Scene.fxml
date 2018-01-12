@@ -31,6 +31,7 @@
       <Button fx:id="buttonGenerator" layoutX="49.0" layoutY="35.0" mnemonicParsing="false" onAction="#buttonGeneratorClick" prefHeight="25.0" prefWidth="147.0" text="Generate Subnets" />
       <Button layoutX="238.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleRemoveSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Remove Subnet" />
       <Button layoutX="238.0" layoutY="72.0" mnemonicParsing="false" onAction="#handleChangeSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Change Subnet" />
-      <TextField fx:id="capcityText" layoutX="607.0" layoutY="35.0" onAction="#changeCapacity" prefHeight="25.0" prefWidth="147.0" text="MAX CAPACITY" />
+      <TextField fx:id="capacityGlobalText" layoutX="607.0" layoutY="35.0" onAction="#changeCapacity" prefHeight="25.0" prefWidth="147.0" text="MAX CAPACITY" />
+      <TextField fx:id="capacityLocalText" layoutX="413.0" layoutY="104.0" prefHeight="25.0" prefWidth="147.0" text="100" />
     </children>
 </AnchorPane>

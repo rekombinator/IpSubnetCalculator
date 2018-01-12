@@ -2,49 +2,49 @@ package com.isk_subnetcalculator;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class Calculator {
     
-    private Integer capacityMultiplier = null;
+    private Integer globalCapacity = null;
 
-    private final Map<String, Integer> subnets = new HashMap<>();
+    private final List<Subnet> subnets = new ArrayList<>();
     
     public void clearSubnets(){
         subnets.clear();
     }
-    public void removeSubnet(String name){
-        subnets.remove(name);
+    public void removeSubnet(Subnet subnet){
+        subnets.remove(subnet);
     }
 
-    public void addSubnet(String name, Integer size){
-        subnets.put(name, size);
+    public void addSubnet(Subnet subnet){
+        subnets.add(subnet);
     }
     
     public List<Subnet> calculate(String majorNetwork) {
 
-        Map<String, Integer> sortedSubnets = sortMap(subnets);
+        Collections.sort(subnets);
 
         List<Subnet> output = new ArrayList<>();
 
         int currentIp = findFirstIp(majorNetwork);
 
-        for (String key : sortedSubnets.keySet()) { 
-            Subnet subnet = new Subnet();
+        for (Subnet subnet : subnets) { 
 
-            subnet.setName(key);
             subnet.setAddress(convertIpToQuartet(currentIp));
-
-            int neededSize = sortedSubnets.get(key);
-            subnet.setNeededSize(neededSize);
             
-            int neededSizeWithCapacity = neededSize;
-            if(capacityMultiplier != null){
-                neededSizeWithCapacity = (neededSize * 100)/ capacityMultiplier;
+            subnet.setNeededSize(subnet.getNeededSize());
+            
+            int neededSizeWithCapacity = subnet.getNeededSize();;
+            
+            if(globalCapacity != null){
+                neededSizeWithCapacity = (subnet.getNeededSize() * 100)
+                        / globalCapacity;
+            }
+            else{
+                 neededSizeWithCapacity = (subnet.getNeededSize() * 100)
+                         / Integer.parseInt(subnet.getCapacity());
             }
 
             int mask = calcMask(neededSizeWithCapacity);
@@ -55,7 +55,8 @@ public class Calculator {
             subnet.setAllocatedSize(allocatedSize);
             subnet.setBroadcast(convertIpToQuartet(currentIp + allocatedSize + 1));
 
-            subnet.setCapacity((neededSize * 100) / allocatedSize + " %");
+            subnet.setCapacity(Integer.toString((subnet.getNeededSize() * 100) 
+                                    / allocatedSize));
 
             String firstUsableHost = convertIpToQuartet(currentIp + 1);
             String lastUsableHost = convertIpToQuartet(currentIp + allocatedSize);
@@ -70,21 +71,6 @@ public class Calculator {
         return output;
     }
     
-    private Map<String, Integer> sortMap(Map<String, Integer> map) {
-        
-        List<Map.Entry<String, Integer>> entries = new ArrayList<>(map.entrySet());
-        
-        Collections.sort(entries, (o1, o2) -> o1.getValue().compareTo(o2.getValue()));
-        
-        Map<String, Integer> sortedMap = new LinkedHashMap<>();
-        
-        entries.forEach((entry) -> {
-            sortedMap.put(entry.getKey(), entry.getValue());
-        });
-
-        return sortedMap;
-    }
-
     private int convertQuartetToBinaryString(String ipAddress) {
         String[] ip = ipAddress.split("\\.|/");
 
@@ -143,11 +129,11 @@ public class Calculator {
         return convertIpToQuartet(shifted);
     }
     
-    public int getCapacityMultiplier() {
-        return capacityMultiplier;
-    }
-    public void setCapacityMultiplier(int capacityMultiplier) {
-        this.capacityMultiplier = capacityMultiplier;
+    public void setGlobalCapacity(Integer globalCapacity) {
+        this.globalCapacity = globalCapacity;
     }
 
+    public Integer getGlobalCapacity() {
+        return globalCapacity;
+    }
 }
