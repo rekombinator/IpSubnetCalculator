@@ -71,8 +71,13 @@ public class FXMLController implements Initializable {
             
     @FXML
     private void changeCapacity(ActionEvent event) {
-        calculator.setGlobalCapacity(Integer.parseInt(
-                                                capacityGlobalText.getText()));
+        String capacity = capacityGlobalText.getText();
+        if(!capacity.equals("") && capacity.matches("\\d+")){
+            calculator.setGlobalCapacity(Integer.parseInt(capacity));
+        }
+        else{
+            calculator.setGlobalCapacity(null);
+        }   
     }
     
     @FXML
