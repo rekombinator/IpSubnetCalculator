@@ -53,7 +53,7 @@ public class FXMLController implements Initializable {
     private final Calculator calculator = new Calculator();    
     
     private final String[] names = {"A", "B", "C", "D", "E", "F", "G", "H", "I","J"};
-    private final int MIN = 3;
+    private final int MIN = 1;
     private final int MAX_GENERATED_SIZE = 20;
     
     private void calculate(){
@@ -85,7 +85,7 @@ public class FXMLController implements Initializable {
         calculator.clearSubnets();
         tableView.getItems().clear();
         
-        int randomNum = MIN + (int)(Math.random() * names.length);
+        int randomNum = MIN + (int)(Math.random() * names.length -1);
           
         for(int i = 0; i < randomNum; i++){
             int randomSubnetSize = MIN + (int)(Math.random() * MAX_GENERATED_SIZE);

@@ -8,6 +8,8 @@ import java.util.List;
 public class Calculator {
     
     private Integer globalCapacity = null;
+    
+    private final Integer networkAdressAndBroadcastAdress = 2;
 
     private final List<Subnet> subnets = new ArrayList<>();
     
@@ -42,7 +44,7 @@ public class Calculator {
                 neededSizeWithCapacity = (subnet.getNeededSize() * 100)
                         / globalCapacity;
             }
-            else{
+            else {
                  neededSizeWithCapacity = (subnet.getNeededSize() * 100)
                          / Integer.parseInt(subnet.getCapacity());
             }
@@ -52,7 +54,7 @@ public class Calculator {
             subnet.setDecMask(toDecMask(mask));
 
             int allocatedSize = findUsableHosts(mask);
-            subnet.setAllocatedSize(allocatedSize);
+            subnet.setAllocatedSize(allocatedSize + networkAdressAndBroadcastAdress);
             subnet.setBroadcast(convertIpToQuartet(currentIp + allocatedSize + 1));
 
             subnet.setCapacity(Integer.toString((subnet.getNeededSize() * 100) 
