@@ -52,10 +52,21 @@ public class FXMLController implements Initializable {
              
     private final Calculator calculator = new Calculator();    
     
+    private final String[] names = {"A", "B", "C", "D", "E", "F", "G", "H", "I","J"};
+    private final int MIN = 3;
+    private final int MAX_GENERATED_SIZE = 20;
+    
     private void calculate(){
         tableView.setItems(FXCollections.observableArrayList(
                 calculator.calculate(majorIpText.getText())));
         tableView.refresh();
+    }
+    
+    private boolean validateInputsData(String name, String size, String capacity){
+        return (!name.equals("") && 
+                !size.equals("") && 
+                size.matches("\\d+") && 
+                capacity.matches("\\d+"));
     }
             
     @FXML
@@ -65,7 +76,7 @@ public class FXMLController implements Initializable {
     }
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleCalculateButtonClick(ActionEvent event) {
             calculate();
     }
     @FXML
@@ -74,13 +85,14 @@ public class FXMLController implements Initializable {
         calculator.clearSubnets();
         tableView.getItems().clear();
         
-        int randomNum = 3 + (int)(Math.random() * 10);
-        String[] name = {"A", "B", "C", "D", "E", "F", "G", "H", "I","J"};
-        
+        int randomNum = MIN + (int)(Math.random() * names.length);
+          
         for(int i = 0; i < randomNum; i++){
-            int randomSubnetSize = 3 + (int)(Math.random() * 10);
-            Subnet subnet = new Subnet(name[i], randomSubnetSize);
+            int randomSubnetSize = MIN + (int)(Math.random() * MAX_GENERATED_SIZE);
+            
+            Subnet subnet = new Subnet(names[i], randomSubnetSize);
             subnet.setCapacity(capacityLocalText.getText());
+            
             calculator.addSubnet(subnet);
             tableView.getItems().add(subnet);
         }        
@@ -88,7 +100,7 @@ public class FXMLController implements Initializable {
     }
     
     @FXML
-    private void clearSubnetsButtonClick(ActionEvent event) {
+    private void handleClearSubnetsButtonClick(ActionEvent event) {
         calculator.clearSubnets();
         tableView.getItems().clear(); 
     }
@@ -98,11 +110,12 @@ public class FXMLController implements Initializable {
         
         String name = nameText.getText();
         String size = sizeText.getText();
+        String capacity = capacityLocalText.getText();
         
-        if(!name.equals("") && !size.equals("") ){
+        if(validateInputsData(name, size, capacity)){
             
             Subnet subnet = new Subnet(name, Integer.parseInt(size));
-            subnet.setCapacity(capacityLocalText.getText());
+            subnet.setCapacity(capacity);
             ObservableList<Subnet> viewlist = tableView.getItems();
 
             if(!viewlist.contains(subnet)){
@@ -131,11 +144,12 @@ public class FXMLController implements Initializable {
         
         String name = nameText.getText();
         String size = sizeText.getText();
+        String capacity = capacityLocalText.getText();
         
-        if(!name.equals("") && !size.equals("") ){ 
+        if(validateInputsData(name, size, capacity)){ 
             
             Subnet subnet = new Subnet(name, Integer.parseInt(size));
-            subnet.setCapacity(capacityLocalText.getText());
+            subnet.setCapacity(capacity);
             
             calculator.removeSubnet(subnet);
             calculator.addSubnet(subnet);
