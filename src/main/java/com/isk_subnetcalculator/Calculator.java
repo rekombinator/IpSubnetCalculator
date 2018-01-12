@@ -9,7 +9,7 @@ public class Calculator {
     
     private Integer globalCapacity = null;
     
-    private final Integer networkAdressAndBroadcastAdress = 2;
+    private final Integer networkAdressAndBroadcastAdress = 0;
 
     private final List<Subnet> subnets = new ArrayList<>();
     
@@ -38,7 +38,7 @@ public class Calculator {
             
             subnet.setNeededSize(subnet.getNeededSize());
             
-            int neededSizeWithCapacity = subnet.getNeededSize();;
+            int neededSizeWithCapacity = 0;
             
             if(globalCapacity != null){
                 neededSizeWithCapacity = (subnet.getNeededSize() * 100)
@@ -48,7 +48,8 @@ public class Calculator {
                  neededSizeWithCapacity = (subnet.getNeededSize() * 100)
                          / Integer.parseInt(subnet.getCapacity());
             }
-
+            //neededSizeWithCapacity += 1;
+            
             int mask = calcMask(neededSizeWithCapacity);
             subnet.setMask("/" + mask);
             subnet.setDecMask(toDecMask(mask));
