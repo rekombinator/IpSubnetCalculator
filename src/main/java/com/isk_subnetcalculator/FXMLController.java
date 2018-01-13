@@ -60,6 +60,14 @@ public class FXMLController implements Initializable {
     private final int MIN = 1;
     private final int MAX_GENERATED_SIZE = 20;
     
+    private boolean checkCapacity(String capacity){
+        int cap = Integer.parseInt(capacity);
+        if(cap > 100 || cap < 0){
+            return false;
+        }
+        return true;
+    }
+    
     private void calculate(){
         tableView.setItems(FXCollections.observableArrayList(
                 calculator.calculate(majorIpText.getText())));
@@ -70,13 +78,16 @@ public class FXMLController implements Initializable {
         return (!name.equals("") && 
                 !size.equals("") && 
                 size.matches("\\d+") && 
-                capacity.matches("\\d+"));
+                capacity.matches("\\d+"))&& 
+                checkCapacity(capacity);
     }
             
     @FXML
     private void changeCapacity(ActionEvent event) {
         String capacity = capacityGlobalText.getText();
-        if(!capacity.equals("") && capacity.matches("\\d+")){
+        if(!capacity.equals("") && capacity.matches("\\d+") && 
+                checkCapacity(capacity)){
+            
             calculator.setGlobalCapacity(Integer.parseInt(capacity));
         }
         else{
