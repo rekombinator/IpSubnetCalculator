@@ -22,7 +22,8 @@ public class Subnet implements Comparable<Subnet>{
     private SimpleStringProperty decMask = new SimpleStringProperty();
     private SimpleStringProperty range = new SimpleStringProperty();
     private SimpleStringProperty broadcast = new SimpleStringProperty();
-    private SimpleStringProperty capacity = new SimpleStringProperty();
+    private SimpleIntegerProperty capacity = new SimpleIntegerProperty();
+    private SimpleStringProperty ipClass = new SimpleStringProperty();
     
     public Subnet(){
         
@@ -41,7 +42,8 @@ public class Subnet implements Comparable<Subnet>{
             SimpleStringProperty mask, 
             SimpleStringProperty decMask, 
             SimpleStringProperty range, 
-            SimpleStringProperty broadcast) {
+            SimpleStringProperty broadcast,
+            SimpleStringProperty ipClass) {
         this.name = name;
         this.neededSize = neededSize;
         this.allocatedSize = allocatedSize;
@@ -50,10 +52,9 @@ public class Subnet implements Comparable<Subnet>{
         this.decMask = decMask;
         this.range = range;
         this.broadcast = broadcast;
+        this.ipClass = ipClass;
     }
-    
-    
-        
+       
     public String getName() {
         return name.getValue();
     }
@@ -118,12 +119,20 @@ public class Subnet implements Comparable<Subnet>{
         this.broadcast.setValue(broadcast);
     }
     
-    public void setCapacity(String capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity.setValue(capacity);
     }
 
-    public String getCapacity() {
+    public Integer getCapacity() {
         return capacity.getValue();
+    }
+    
+    public void setIpClass(String ipClass) {
+        this.ipClass.setValue(ipClass);
+    }
+
+    public String getIpClass() {
+        return ipClass.getValue();
     }
 
     @Override
