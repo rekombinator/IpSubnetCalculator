@@ -34,6 +34,10 @@ public class FXMLController implements Initializable {
     private TableColumn<Subnet, String> broadcastColumn;
     @FXML
     private TableColumn<Subnet, String> capacityColumn;
+    @FXML
+    private TableColumn<Subnet, String> ipClassColumn;
+    
+    
     
     @FXML
     private TextField nameText;
@@ -96,7 +100,7 @@ public class FXMLController implements Initializable {
             int randomSubnetSize = MIN + (int)(Math.random() * MAX_GENERATED_SIZE);
             
             Subnet subnet = new Subnet(names[i], randomSubnetSize);
-            subnet.setCapacity(capacityLocalText.getText());
+            subnet.setCapacity(Integer.parseInt(capacityLocalText.getText()));
             
             calculator.addSubnet(subnet);
             tableView.getItems().add(subnet);
@@ -120,7 +124,7 @@ public class FXMLController implements Initializable {
         if(validateInputsData(name, size, capacity)){
             
             Subnet subnet = new Subnet(name, Integer.parseInt(size));
-            subnet.setCapacity(capacity);
+            subnet.setCapacity(Integer.parseInt(capacity));
             ObservableList<Subnet> viewlist = tableView.getItems();
 
             if(!viewlist.contains(subnet)){
@@ -154,7 +158,7 @@ public class FXMLController implements Initializable {
         if(validateInputsData(name, size, capacity)){ 
             
             Subnet subnet = new Subnet(name, Integer.parseInt(size));
-            subnet.setCapacity(capacity);
+            subnet.setCapacity(Integer.parseInt(capacity));
             
             calculator.removeSubnet(subnet);
             calculator.addSubnet(subnet);
@@ -189,5 +193,7 @@ public class FXMLController implements Initializable {
                 new PropertyValueFactory<>("broadcast")); 
         capacityColumn.setCellValueFactory(
                 new PropertyValueFactory<>("capacity"));
+        ipClassColumn.setCellValueFactory(
+                new PropertyValueFactory<>("ipClass"));
     }    
 }

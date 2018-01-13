@@ -15,9 +15,12 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
         Scene scene = new Scene(root);
+      
         scene.getStylesheets().add("/styles/Styles.css");
         
+        
         stage.setTitle("IP Subnet Calculator");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
