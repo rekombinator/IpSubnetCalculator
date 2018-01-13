@@ -9,7 +9,7 @@ public class Calculator {
     
     private Integer globalCapacity = null;
     
-    private final Integer networkAdressAndBroadcastAdress = 0;
+    private final Integer networkAdressAndBroadcastAdress = 2;
 
     private final List<Subnet> subnets = new ArrayList<>();
     
@@ -35,8 +35,7 @@ public class Calculator {
         for (Subnet subnet : subnets) { 
 
             subnet.setAddress(convertIpToQuartet(currentIp));
-            
-            subnet.setNeededSize(subnet.getNeededSize());
+            subnet.setIpClass(calculateIpClass(currentIp));
             
             int neededSizeWithCapacity = 0;
             
@@ -46,9 +45,8 @@ public class Calculator {
             }
             else {
                  neededSizeWithCapacity = (subnet.getNeededSize() * 100)
-                         / Integer.parseInt(subnet.getCapacity());
+                         / subnet.getCapacity();
             }
-            //neededSizeWithCapacity += 1;
             
             int mask = calcMask(neededSizeWithCapacity);
             subnet.setMask("/" + mask);
@@ -58,8 +56,8 @@ public class Calculator {
             subnet.setAllocatedSize(allocatedSize + networkAdressAndBroadcastAdress);
             subnet.setBroadcast(convertIpToQuartet(currentIp + allocatedSize + 1));
 
-            subnet.setCapacity(Integer.toString((subnet.getNeededSize() * 100) 
-                                    / allocatedSize));
+            subnet.setCapacity((subnet.getNeededSize() * 100) 
+                                    / allocatedSize);
 
             String firstUsableHost = convertIpToQuartet(currentIp + 1);
             String lastUsableHost = convertIpToQuartet(currentIp + allocatedSize);
@@ -130,6 +128,26 @@ public class Calculator {
         int shifted = allOne << (Integer.SIZE - mask);
 
         return convertIpToQuartet(shifted);
+    }
+    
+    public String calculateIpClass(int ipAddress){
+        int tempIpNumeric = ipAddress >>> 28;
+        if (((tempIpNumeric & 0b1000) == 0b0000)){
+            return "A";
+        }
+        else if (((tempIpNumeric & 0b1100) == 0b1000)){
+            return "B";
+        }
+        else if (((tempIpNumeric & 0b1110) == 0b1100)){
+            return "C";
+        }
+        else if (((tempIpNumeric & 0b1111) == 0b1110)){
+            return "D";
+        }
+        else if (((tempIpNumeric & 0b1111) == 0b1111)){
+            return "E";
+        }
+        return "";
     }
     
     public void setGlobalCapacity(Integer globalCapacity) {
