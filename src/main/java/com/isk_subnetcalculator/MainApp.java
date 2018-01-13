@@ -18,7 +18,6 @@ public class MainApp extends Application {
       
         scene.getStylesheets().add("/styles/Styles.css");
         
-        
         stage.setTitle("IP Subnet Calculator");
         stage.setResizable(false);
         stage.setScene(scene);
