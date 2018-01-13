@@ -100,7 +100,7 @@ public class FXMLController implements Initializable {
             int randomSubnetSize = MIN + (int)(Math.random() * MAX_GENERATED_SIZE);
             
             Subnet subnet = new Subnet(names[i], randomSubnetSize);
-            subnet.setCapacity(Integer.parseInt(capacityLocalText.getText()));
+            subnet.setCapacity(100);
             
             calculator.addSubnet(subnet);
             tableView.getItems().add(subnet);

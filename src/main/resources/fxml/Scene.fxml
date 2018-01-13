@@ -24,16 +24,17 @@
             <TableColumn fx:id="ipClassColumn" prefWidth="87.0" text="Class" />
         </columns>
       </TableView>
-      <TextField fx:id="nameText" layoutX="413.0" layoutY="36.0" prefHeight="25.0" prefWidth="147.0" text="name" />
-      <TextField fx:id="sizeText" layoutX="413.0" layoutY="66.0" prefHeight="25.0" prefWidth="147.0" text="size" />
-      <Button fx:id="addSubnetButton" layoutX="238.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAddSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Add Subnet" />
+      <TextField fx:id="nameText" layoutX="407.0" layoutY="35.0" prefHeight="25.0" prefWidth="147.0" promptText="Subnet name" />
+      <TextField fx:id="sizeText" layoutX="407.0" layoutY="66.0" prefHeight="25.0" prefWidth="147.0" promptText="Subnet size" />
+      <Button fx:id="addSubnetButton" layoutX="229.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAddSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Add Subnet" />
       <Button fx:id="clearSubnetsButton" layoutX="49.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleClearSubnetsButtonClick" prefHeight="25.0" prefWidth="147.0" text="Clear Subnets" />
       <TextField fx:id="majorIpText" layoutX="969.0" layoutY="35.0" prefHeight="25.0" prefWidth="147.0" text="192.168.1.0/24" />
       <Button fx:id="buttonGenerator" layoutX="49.0" layoutY="35.0" mnemonicParsing="false" onAction="#buttonGeneratorClick" prefHeight="25.0" prefWidth="147.0" text="Generate Subnets" />
-      <Button layoutX="238.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleRemoveSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Remove Subnet" />
-      <Button layoutX="238.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleChangeSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Change Subnet" />
-      <TextField fx:id="capacityGlobalText" layoutX="582.0" layoutY="97.0" onAction="#changeCapacity" prefHeight="25.0" prefWidth="147.0" text="MAX CAPACITY" />
-      <TextField fx:id="capacityLocalText" layoutX="413.0" layoutY="97.0" prefHeight="25.0" prefWidth="147.0" text="100" />
-      <Label layoutX="842.0" layoutY="39.0" prefHeight="16.0" prefWidth="100.0" text="Major Adress" />
+      <Button layoutX="229.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleRemoveSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Remove Subnet" />
+      <Button layoutX="229.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleChangeSubnetButtonClick" prefHeight="25.0" prefWidth="147.0" text="Change Subnet" />
+      <TextField fx:id="capacityGlobalText" layoutX="582.0" layoutY="97.0" onAction="#changeCapacity" prefHeight="25.0" prefWidth="147.0" promptText="MAX CAPACITY" />
+      <TextField fx:id="capacityLocalText" layoutX="407.0" layoutY="97.0" prefHeight="25.0" prefWidth="147.0" promptText="Subnet capacity" />
+      <Label layoutX="866.0" layoutY="35.0" prefHeight="25.0" prefWidth="86.0" text="Start Adress" />
+      <Label layoutX="1071.0" layoutY="622.0" prefHeight="15.0" prefWidth="86.0" text="TP&amp;FS" />
     </children>
 </AnchorPane>
