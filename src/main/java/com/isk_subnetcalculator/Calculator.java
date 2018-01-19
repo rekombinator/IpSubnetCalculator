@@ -67,6 +67,8 @@ public class Calculator {
             output.add(subnet);
 
             currentIp += allocatedSize + 2;
+            while(currentIp % allocatedSize == 0)
+                currentIp++;
         }
 
         return output;

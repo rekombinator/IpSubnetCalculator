@@ -36,5 +36,7 @@
       <TextField fx:id="capacityLocalText" layoutX="407.0" layoutY="97.0" prefHeight="25.0" prefWidth="147.0" promptText="Subnet capacity" />
       <Label layoutX="854.0" layoutY="35.0" prefHeight="25.0" prefWidth="106.0" text="Start Adress" />
       <Label layoutX="1071.0" layoutY="622.0" prefHeight="15.0" prefWidth="86.0" text="TP&amp;FS" />
+      <TextField fx:id="numberOfComp" layoutX="984.0" layoutY="97.0" onAction="#handleChangeNumberOfComp" prefHeight="25.0" prefWidth="147.0" promptText="NUMBER OF COMP" />
+      <TextField fx:id="numberOfSubnets" layoutX="781.0" layoutY="97.0" onAction="#handleChangeNumberOfComp" prefHeight="25.0" prefWidth="164.0" promptText="NUMBER OF SUBNETS" />
     </children>
 </AnchorPane>

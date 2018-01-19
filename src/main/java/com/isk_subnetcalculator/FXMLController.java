@@ -53,6 +53,11 @@ public class FXMLController implements Initializable {
     
     @FXML
     private TextField majorIpText;
+    
+    @FXML
+    private TextField numberOfComp;
+    @FXML
+    private TextField numberOfSubnets;
              
     private final Calculator calculator = new Calculator();    
     
@@ -99,6 +104,56 @@ public class FXMLController implements Initializable {
     private void handleCalculateButtonClick(ActionEvent event) {
             calculate();
     }
+    @FXML
+    private void handleChangeNumberOfComp(ActionEvent event) {
+        
+        String numberOfComputers = numberOfComp.getText();
+        String numberOfSubnets = this.numberOfSubnets.getText();
+        
+        if(numberOfComputers != null && !numberOfComputers.equals("") && 
+                numberOfSubnets != null && !numberOfSubnets.equals("")
+                && numberOfComputers.matches("\\d+") && numberOfSubnets.matches("\\d+")){
+            
+            Integer subnets = Integer.parseInt(numberOfSubnets);
+            Integer computers = Integer.parseInt(numberOfComputers);
+            Integer compPerSubnet = computers / subnets;
+            Integer restForOneSubnet = computers % subnets;
+            
+            calculator.clearSubnets();
+            tableView.getItems().clear();
+            
+            if(computers < subnets){
+                for(int i = 1; i <= computers ; i++){
+            
+                 Subnet subnet = new Subnet(String.valueOf(i), 1);
+                 subnet.setCapacity(100);
+
+                 calculator.addSubnet(subnet);
+                 tableView.getItems().add(subnet);
+            }
+                
+            }
+            else{
+                for(int i = 1; i <= subnets ; i++){
+
+                    if(i == subnets){
+                        compPerSubnet = compPerSubnet + restForOneSubnet;
+                    }
+
+                     Subnet subnet = new Subnet(String.valueOf(i), compPerSubnet);
+                     subnet.setCapacity(100);
+
+                     calculator.addSubnet(subnet);
+                     tableView.getItems().add(subnet);
+                 }
+            }
+            calculate();
+            tableView.refresh();
+                      
+        }
+           
+    }
+    
     @FXML
     private void buttonGeneratorClick(ActionEvent event) {
         

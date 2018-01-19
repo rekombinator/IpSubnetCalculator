@@ -162,7 +162,7 @@ public class Subnet implements Comparable<Subnet>{
 
     @Override
     public int compareTo(Subnet t) {
-        return this.neededSize.getValue().compareTo(t.neededSize.getValue());
+        return t.neededSize.getValue().compareTo(this.neededSize.getValue());
     }
     
         
